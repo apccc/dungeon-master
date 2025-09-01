@@ -1,0 +1,1256 @@
+/* Player Form Styles */
+#player-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #0b0d10;
+    color: #e7ecf2;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+#player-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #7cc4ff;
+    text-align: center;
+}
+
+.player-section {
+    background: #12161c;
+    border: 1px solid #1b212a;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 0 #0006, 0 8px 24px #0007;
+}
+
+.player-section h3 {
+    font-size: 18px;
+    margin: 0 0 16px 0;
+    color: #7cc4ff;
+    border-bottom: 1px solid #1b212a;
+    padding-bottom: 8px;
+}
+
+.player-section h4 {
+    font-size: 16px;
+    margin: 0 0 12px 0;
+    color: #9aa6b2;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Prevent grid overflow */
+}
+
+.form-field label {
+    font-size: 12px;
+    color: #9aa6b2;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    background: #0e1218;
+    color: #e7ecf2;
+    border: 1px solid #1d2530;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Combat & Survivability Section - Compact Layout */
+.combat-main-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 100%; /* Take full width */
+}
+
+.combat-core-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: #0e1218;
+    border-radius: 10px;
+    border: 1px solid #1d2530;
+}
+
+.hit-points-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: #0e1218;
+    border-radius: 10px;
+    border: 1px solid #1d2530;
+}
+
+.hit-dice-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: #0e1218;
+    border-radius: 10px;
+    border: 1px solid #1d2530;
+}
+
+.hp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.hit-dice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+
+
+.combat-stats-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px;
+    background: #0e1218;
+    border-radius: 10px;
+    border: 1px solid #1d2530;
+}
+
+.small-field input {
+    padding: 8px 10px;
+    font-size: 13px;
+    min-height: auto;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    border-color: #7cc4ff;
+}
+
+.form-field textarea {
+    min-height: 160px;
+    resize: vertical;
+    font-size: 11px;
+    padding: 8px 10px;
+}
+
+.checkbox-field {
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-field label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.checkbox-field input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.death-saves {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: #0e1218;
+    border-radius: 10px;
+    border: 1px solid #1d2530;
+}
+
+.death-save-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.death-save-group label {
+    font-size: 12px;
+    color: #9aa6b2;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #e7ecf2;
+    cursor: pointer;
+    margin: 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+
+
+.abilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.ability-section {
+    background: #0e1218;
+    border: 1px solid #1d2530;
+    border-radius: 10px;
+    padding: 16px;
+    min-width: 0; /* Prevent grid overflow */
+}
+
+.ability-scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.skill-row {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 12px;
+    align-items: end;
+    margin-bottom: 12px;
+    min-width: 0; /* Prevent grid overflow */
+}
+
+/* Make ability score fields smaller */
+.ability-scores .form-field input {
+    background: #0e1218;
+    color: #e7ecf2;
+    border: 1px solid #1d2530;
+    border-radius: 10px;
+    padding: 6px 8px;
+    font-size: 12px;
+    min-height: auto;
+    outline: none;
+    transition: border-color 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.ability-scores .form-field input:focus {
+    border-color: #7cc4ff;
+}
+
+/* Make skill and save fields match ability score styling */
+.skill-row .skill-input input {
+    background: #0e1218;
+    color: #e7ecf2;
+    border: 1px solid #1d2530;
+    border-radius: 10px;
+    padding: 6px 8px;
+    font-size: 12px;
+    min-height: auto;
+    outline: none;
+    transition: border-color 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.skill-row .skill-input input:focus {
+    border-color: #7cc4ff;
+}
+
+.skill-input {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Prevent grid overflow */
+}
+
+.skill-input label {
+    font-size: 12px;
+    color: #9aa6b2;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.skill-checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: #9aa6b2;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
+    min-width: 60px; /* Reduced minimum width for checkbox area */
+    text-align: center;
+}
+
+.skill-checkbox input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    order: 1; /* Ensure checkbox appears first */
+}
+
+.skill-checkbox span {
+    order: 2; /* Ensure text appears below checkbox */
+    font-size: 9px;
+    line-height: 1.2;
+    text-transform: lowercase;
+}
+
+.armor-training {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.armor-training label {
+    font-size: 12px;
+    color: #9aa6b2;
+    margin-bottom: 8px;
+}
+
+.table-container {
+    background: #0e1218;
+    border: 1px solid #1d2530;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 0; /* Prevent grid overflow */
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    background: #1b212a;
+    padding: 12px;
+    font-size: 12px;
+    color: #9aa6b2;
+    font-weight: 600;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid #1d2530;
+    min-width: 0; /* Prevent grid overflow */
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-row input {
+    background: #0e1218;
+    color: #e7ecf2;
+    border: 1px solid #1d2530;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 12px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.table-row input:focus {
+    border-color: #7cc4ff;
+}
+
+.spells-table .table-header {
+    grid-template-columns: 60px 1fr 120px 80px 60px 60px 60px 1fr;
+}
+
+.spells-table .table-row {
+    grid-template-columns: 60px 1fr 120px 80px 60px 60px 60px 1fr;
+}
+
+.attunements-table .table-header {
+    grid-template-columns: 1fr 1fr;
+}
+
+.attunements-table .table-row {
+    grid-template-columns: 1fr 1fr;
+}
+
+.spell-slot-section {
+    background: #0e1218;
+    border: 1px dashed #1d2530;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.spell-slot-controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.spell-slot-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.spell-slot-checkboxes label:first-child {
+    font-size: 12px;
+    color: #9aa6b2;
+    margin-bottom: 4px;
+}
+
+/* Compact spellcasting section styling */
+.spell-slot-section h4 {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    color: #9aa6b2;
+}
+
+.spell-slot-controls .form-field input {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-height: auto;
+}
+
+.spell-slot-controls .form-field label {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.spell-slot-checkboxes .checkbox-group {
+    gap: 8px;
+}
+
+.spell-slot-checkboxes .checkbox-group label {
+    font-size: 11px;
+    gap: 4px;
+}
+
+/* Compact spellcasting form fields */
+.player-section:has(#spellAbility) .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.player-section:has(#spellAbility) .form-field input {
+    font-size: 12px;
+    padding: 8px 10px;
+    min-height: auto;
+}
+
+.player-section:has(#spellAbility) .form-field label {
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.coins-section {
+    margin-top: 20px;
+}
+
+.coins-section > label {
+    font-size: 12px;
+    color: #9aa6b2;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.coins-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-actions button {
+    background: #7cc4ff;
+    color: #0b0d10;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-actions button:hover {
+    background: #5aa8e6;
+}
+
+.form-actions button:disabled {
+    background: #4a5568;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+/* Large screens - ensure 6-column layout for abilities */
+@media (min-width: 1200px) {
+    .abilities-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+    }
+    
+    /* Compact textarea styling for large screens */
+    .form-field textarea {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-height: 100px;
+    }
+    
+    .skill-row {
+        grid-template-columns: 1fr 70px;
+        gap: 14px;
+    }
+    
+    .skill-checkbox {
+        min-width: 70px;
+        font-size: 11px;
+    }
+    
+    .skill-checkbox span {
+        font-size: 10px;
+    }
+    
+    .skill-input label {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .skill-row .skill-input input {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: auto;
+    }
+    
+    .combat-main-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+    
+    .combat-secondary-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+    
+    .combat-stats-group {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    /* Reduce widths of individual fields in combat-stats-group */
+    .combat-stats-group .form-field {
+        min-width: 0;
+        max-width: 100%;
+    }
+    
+    .combat-stats-group .form-field input {
+        font-size: 12px;
+        padding: 6px 8px;
+        min-height: auto;
+    }
+    
+    .combat-stats-group .form-field label {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    /* Compact spellcasting section for large screens */
+    .spell-slot-section {
+        padding: 14px;
+        margin-bottom: 14px;
+    }
+    
+    .spell-slot-section h4 {
+        font-size: 14px;
+        margin: 0 0 10px 0;
+    }
+    
+    .spell-slot-controls {
+        gap: 16px;
+    }
+    
+    .spell-slot-controls .form-field input {
+        font-size: 12px;
+        padding: 6px 8px;
+        min-height: auto;
+    }
+    
+    .spell-slot-controls .form-field label {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    .spell-slot-checkboxes label:first-child {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    .spell-slot-checkboxes .checkbox-group {
+        gap: 8px;
+    }
+    
+    .spell-slot-checkboxes .checkbox-group label {
+        font-size: 11px;
+        gap: 4px;
+    }
+    
+    /* Compact spellcasting form fields */
+    .player-section:has(#spellAbility) .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .player-section:has(#spellAbility) .form-field input {
+        font-size: 12px;
+        padding: 8px 10px;
+        min-height: auto;
+    }
+    
+    .player-section:has(#spellAbility) .form-field label {
+        font-size: 11px;
+        margin-bottom: 5px;
+    }
+}
+
+/* Extra large screens - 6-column layout with compact sizing */
+@media (min-width: 1400px) {
+    .abilities-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+    }
+    
+    /* Compact textarea styling for extra large screens */
+    .form-field textarea {
+        font-size: 10px;
+        padding: 4px 6px;
+        min-height: 90px;
+    }
+    
+    .skill-row {
+        grid-template-columns: 1fr 65px;
+        gap: 12px;
+    }
+    
+    .skill-checkbox {
+        min-width: 65px;
+        font-size: 10px;
+    }
+    
+    .skill-checkbox span {
+        font-size: 9px;
+    }
+    
+    .skill-input label {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .skill-row .skill-input input {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: auto;
+    }
+    
+    .combat-main-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+    }
+    
+    /* Reduce padding and font sizes for compact fit */
+    .combat-core-group,
+    .hit-points-section,
+    .hit-dice-section,
+    .death-saves,
+    .combat-stats-group {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    /* Make form fields more compact */
+    .combat-main-grid .form-field input {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: auto;
+    }
+    
+    /* Reduce label sizes */
+    .combat-main-grid .form-field label {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    /* Make section headers smaller */
+    .combat-main-grid h4 {
+        font-size: 14px;
+        margin: 0 0 8px 0;
+    }
+    
+    /* Compact HP and hit dice grids */
+    .hp-grid {
+        gap: 8px;
+    }
+    
+    .hit-dice-grid {
+        gap: 8px;
+    }
+    
+    /* Compact checkbox groups */
+    .checkbox-group {
+        gap: 8px;
+    }
+    
+    .checkbox-group label {
+        font-size: 11px;
+        gap: 4px;
+    }
+    
+    /* Make death save labels more compact */
+    .death-save-group label {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    /* Compact the combat stats group further */
+    .combat-stats-group .form-field {
+        margin-bottom: 8px;
+    }
+    
+    .combat-stats-group .form-field:last-child {
+        margin-bottom: 0;
+    }
+    
+    /* Ensure all sections have consistent compact sizing */
+    .combat-main-grid > div {
+        min-width: 0;
+        overflow: hidden;
+    }
+    
+    /* Make text inputs even more compact */
+    .combat-main-grid input[type="text"] {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+    
+    /* Compact checkbox styling */
+    .combat-main-grid input[type="checkbox"] {
+        transform: scale(0.9);
+    }
+    
+    /* Further reduce combat stats group field sizes */
+    .combat-stats-group {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .combat-stats-group .form-field input {
+        font-size: 11px;
+        padding: 4px 6px;
+        min-height: auto;
+    }
+    
+    .combat-stats-group .form-field label {
+        font-size: 10px;
+        margin-bottom: 3px;
+    }
+    
+    /* Compact spellcasting section for extra large screens */
+    .spell-slot-section {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .spell-slot-section h4 {
+        font-size: 12px;
+        margin: 0 0 6px 0;
+    }
+    
+    .spell-slot-controls {
+        gap: 12px;
+    }
+    
+    .spell-slot-controls .form-field input {
+        font-size: 10px;
+        padding: 4px 6px;
+        min-height: auto;
+    }
+    
+    .spell-slot-controls .form-field label {
+        font-size: 9px;
+        margin-bottom: 2px;
+    }
+    
+    .spell-slot-checkboxes label:first-child {
+        font-size: 9px;
+        margin-bottom: 2px;
+    }
+    
+    .spell-slot-checkboxes .checkbox-group {
+        gap: 6px;
+    }
+    
+    .spell-slot-checkboxes .checkbox-group label {
+        font-size: 9px;
+        gap: 3px;
+    }
+    
+    /* Compact spellcasting form fields */
+    .player-section:has(#spellAbility) .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .player-section:has(#spellAbility) .form-field input {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-height: auto;
+    }
+    
+    .player-section:has(#spellAbility) .form-field label {
+        font-size: 9px;
+        margin-bottom: 3px;
+    }
+}
+
+/* Medium screens - 3-column layout for abilities with compact styling */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .abilities-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    
+    /* Compact textarea styling for medium screens */
+    .form-field textarea {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-height: 100px;
+    }
+    
+    .skill-row {
+        grid-template-columns: 1fr 65px;
+        gap: 12px;
+    }
+    
+    .skill-checkbox {
+        min-width: 65px;
+        font-size: 10px;
+    }
+    
+    .skill-checkbox span {
+        font-size: 9px;
+    }
+    
+    .skill-input label {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .skill-row .skill-input input {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: auto;
+    }
+    
+    .combat-main-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    /* Reduce padding and font sizes for compact fit on medium screens */
+    .combat-core-group,
+    .hit-points-section,
+    .hit-dice-section,
+    .death-saves,
+    .combat-stats-group {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    /* Make form fields more compact */
+    .combat-main-grid .form-field input {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: auto;
+    }
+    
+    /* Reduce label sizes */
+    .combat-main-grid .form-field label {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    /* Make section headers smaller */
+    .combat-main-grid h4 {
+        font-size: 14px;
+        margin: 0 0 8px 0;
+    }
+    
+    /* Compact HP and hit dice grids */
+    .hp-grid {
+        gap: 8px;
+    }
+    
+    .hit-dice-grid {
+        gap: 8px;
+    }
+    
+    /* Compact checkbox groups */
+    .checkbox-group {
+        gap: 8px;
+    }
+    
+    .checkbox-group label {
+        font-size: 11px;
+        gap: 4px;
+    }
+    
+    /* Make death save labels more compact */
+    .death-save-group label {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    .combat-stats-group {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    /* Reduce field sizes for medium screens */
+    .combat-stats-group .form-field input {
+        font-size: 11px;
+        padding: 4px 6px;
+        min-height: auto;
+    }
+    
+    .combat-stats-group .form-field label {
+        font-size: 10px;
+        margin-bottom: 3px;
+    }
+    
+    /* Ensure all sections have consistent compact sizing */
+    .combat-main-grid > div {
+        min-width: 0;
+        overflow: hidden;
+    }
+    
+    /* Make text inputs even more compact */
+    .combat-main-grid input[type="text"] {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+    
+    /* Compact checkbox styling */
+    .combat-main-grid input[type="checkbox"] {
+        transform: scale(0.9);
+    }
+    
+    /* Compact spellcasting section for 3-column layout */
+    .spell-slot-section {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .spell-slot-section h4 {
+        font-size: 13px;
+        margin: 0 0 8px 0;
+    }
+    
+    .spell-slot-controls {
+        gap: 12px;
+    }
+    
+    .spell-slot-controls .form-field input {
+        font-size: 11px;
+        padding: 4px 6px;
+        min-height: auto;
+    }
+    
+    .spell-slot-controls .form-field label {
+        font-size: 10px;
+        margin-bottom: 3px;
+    }
+    
+    .spell-slot-checkboxes label:first-child {
+        font-size: 10px;
+        margin-bottom: 3px;
+    }
+    
+    .spell-slot-checkboxes .checkbox-group {
+        gap: 6px;
+    }
+    
+    .spell-slot-checkboxes .checkbox-group label {
+        font-size: 10px;
+        gap: 3px;
+    }
+    
+    /* Compact spellcasting form fields */
+    .player-section:has(#spellAbility) .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .player-section:has(#spellAbility) .form-field input {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-height: auto;
+    }
+    
+    .player-section:has(#spellAbility) .form-field label {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    /* Compact textarea styling for mobile screens */
+    .form-field textarea {
+        font-size: 11px;
+        padding: 6px 8px;
+        min-height: 90px;
+    }
+    
+    .combat-main-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 16px;
+    }
+    
+    .abilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .skill-row {
+        grid-template-columns: 1fr 60px;
+        gap: 8px;
+    }
+    
+    .skill-row .skill-checkbox {
+        min-width: 50px;
+        justify-content: center;
+        font-size: 9px;
+    }
+    
+    .skill-input label {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .skill-row .skill-input input {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: auto;
+    }
+    
+    .combat-stats-group {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .coins-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .spells-table .table-header,
+    .spells-table .table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .spells-table .table-header > div {
+        display: none;
+    }
+    
+    .spells-table .table-row input::before {
+        content: attr(placeholder);
+        display: block;
+        font-size: 10px;
+        color: #9aa6b2;
+        margin-bottom: 4px;
+    }
+    
+    .death-saves {
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .spell-slot-controls {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .hp-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .hit-dice-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    #player-container {
+        padding: 10px;
+    }
+    
+    /* Compact textarea styling for small mobile screens */
+    .form-field textarea {
+        font-size: 10px;
+        padding: 4px 6px;
+        min-height: 80px;
+    }
+    
+    .player-section {
+        padding: 16px;
+    }
+    
+    .abilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .skill-row {
+        grid-template-columns: 1fr 50px;
+        gap: 6px;
+    }
+    
+    .skill-row .skill-checkbox {
+        min-width: 45px;
+        font-size: 8px;
+    }
+    
+    .skill-input label {
+        font-size: 11px;
+        margin-bottom: 5px;
+    }
+    
+    .skill-row .skill-input input {
+        padding: 5px 6px;
+        font-size: 11px;
+        min-height: auto;
+    }
+    
+    .coins-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .form-grid {
+        gap: 12px;
+    }
+    
+    .combat-main-grid {
+        gap: 12px;
+    }
+    
+    .combat-secondary-grid {
+        gap: 12px;
+    }
+    
+    .combat-stats-group {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+/* DM Mode - Disabled Form Styles */
+#player-form.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+#player-form.disabled input,
+#player-form.disabled textarea,
+#player-form.disabled select {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+}
+
+#player-form.disabled button[type="submit"] {
+    background-color: #6c757d !important;
+    color: white !important;
+    cursor: not-allowed;
+}
+
+.editing-disabled-note {
+    background-color: #fff3cd !important;
+    border: 1px solid #ffeaa7 !important;
+    color: #856404 !important;
+    padding: 10px !important;
+    margin: 10px 0 !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    font-weight: 500;
+}
+
+/* Spell Slots 3-Column Layout for Medium+ Screens */
+@media (min-width: 769px) {
+    #spellSlots {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    
+    .spell-slot-section {
+        margin-bottom: 0; /* Remove bottom margin since grid handles spacing */
+    }
+}
+
+/* Extra large screens - tighter spacing for 3-column layout */
+@media (min-width: 1400px) {
+    #spellSlots {
+        gap: 12px;
+    }
+}

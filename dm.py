@@ -4,7 +4,7 @@ import ollama
 
 bedrock_client = boto3.client('bedrock-runtime', region_name='us-west-2')
 ollama_client = ollama.Client()
-BEDROCK_MODEL_ID='arn:aws:bedrock:xxxxx'
+BEDROCK_MODEL_ID='anthropic.claude-3-7-sonnet-20250219-v1:0'
 
 def get_next(human_characters_string: str, story_string: str) -> str:
   print("The DM is thinking...")

@@ -1,0 +1,414 @@
+#reference-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    #reference-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .reference-navigation {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .reference-field-value input[type="text"] {
+        padding: 10px 12px;
+        font-size: 16px; /* Better for mobile touch */
+    }
+}
+
+.reference-page-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#reference-title {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.reference-description {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.reference-description p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.reference-navigation {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #e8f4fd;
+    border-radius: 8px;
+    border-left: 4px solid #17a2b8;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.reference-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 150px;
+    max-width: 200px;
+    flex: 0 1 auto;
+}
+
+.reference-field-label {
+    font-weight: 600;
+    color: #495057;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reference-field-value {
+    color: #17a2b8;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.reference-field-value input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    color: #17a2b8;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.reference-field-value input[type="text"]:focus {
+    outline: none;
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 2px rgba(23, 162, 184, 0.1);
+}
+
+.reference-load-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    min-height: 36px;
+    align-self: flex-end;
+    margin-top: 0;
+}
+
+.reference-load-button:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reference-load-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.reference-load-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.reference-error-message {
+    color: #f44336;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffebee;
+    border: 1px solid #f44336;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.reference-back-link {
+    color: #6c757d;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: inline-block;
+}
+
+.reference-back-link:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    color: #495057;
+}
+
+.reference-breadcrumb {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #6c757d;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+#breadcrumb-container {
+    min-height: 20px;
+    margin-bottom: 20px;
+}
+
+.reference-breadcrumb-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.reference-breadcrumb-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.reference-breadcrumb-separator {
+    color: #6c757d;
+    margin: 0 8px;
+}
+
+.reference-breadcrumb-current {
+    color: #495057;
+    font-weight: 600;
+}
+
+.reference-item {
+    margin-bottom: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.reference-api-endpoint {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left: 3px solid #28a745;
+}
+
+.reference-api-endpoint-value {
+    color: #28a745;
+}
+
+.api-endpoint-link {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.api-endpoint-link:hover {
+    color: #1e7e34;
+    text-decoration: underline;
+}
+
+.reference-api-link {
+    background: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left: 3px solid #ffc107;
+}
+
+.reference-api-link-value {
+    color: #856404;
+}
+
+.api-2014-link {
+    color: #856404;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.api-2014-link:hover {
+    color: #6d5400;
+    text-decoration: underline;
+}
+
+.reference-key {
+    color: #0066cc;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.reference-value {
+    color: #333;
+}
+
+.reference-string-value {
+    color: #008800;
+}
+
+.reference-number-value {
+    color: #cc6600;
+}
+
+.reference-boolean-value {
+    color: #cc0066;
+    font-weight: 600;
+}
+
+.reference-null-value {
+    color: #999;
+    font-style: italic;
+}
+
+.reference-undefined-value {
+    color: #999;
+    font-style: italic;
+}
+
+.reference-array-value,
+.reference-object-value {
+    color: #666;
+    font-style: italic;
+}
+
+.reference-unknown-value {
+    color: #cc0000;
+}
+
+.reference-array-header,
+.reference-object-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.reference-toggle-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.reference-toggle-btn:hover {
+    background: #5a6fd8;
+    transform: scale(1.1);
+}
+
+.reference-toggle-btn.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.toggle-icon {
+    transition: transform 0.2s ease;
+}
+
+.reference-array-content,
+.reference-object-content {
+    border-left: 2px solid #e1e5e9;
+    margin-left: 6px;
+    padding-left: 10px;
+}
+
+/* Depth-based indentation classes */
+.reference-depth-1 .reference-array-content,
+.reference-depth-1 .reference-object-content {
+    border-left: 2px solid #e1e5e9;
+    margin-left: 6px;
+    padding-left: 10px;
+}
+
+.reference-depth-2 .reference-array-content,
+.reference-depth-2 .reference-object-content {
+    border-left: 2px solid #d1d5d9;
+    margin-left: 6px;
+    padding-left: 10px;
+}
+
+.reference-depth-3 .reference-array-content,
+.reference-depth-3 .reference-object-content {
+    border-left: 2px solid #c1c5c9;
+    margin-left: 6px;
+    padding-left: 10px;
+}
+
+.reference-depth-4 .reference-array-content,
+.reference-depth-4 .reference-object-content {
+    border-left: 2px solid #b1b5b9;
+    margin-left: 6px;
+    padding-left: 10px;
+}
+
+.reference-depth-5 .reference-array-content,
+.reference-depth-5 .reference-object-content {
+    border-left: 2px solid #a1a5a9;
+    margin-left: 6px;
+    padding-left: 10px;
+}
+
+.reference-empty {
+    opacity: 0.6;
+}
+
+.reference-empty .reference-value {
+    font-style: italic;
+}
+
+#reference-data-container {
+    overflow-x: hidden;
+    word-wrap: break-word;
+    word-break: break-word;
+}

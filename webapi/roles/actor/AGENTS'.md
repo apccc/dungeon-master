@@ -1,0 +1,2 @@
+- The dungeon master plays the monsters, choosing their actions and rolling dice for their attacks.
+- The dungeon master plays all the people the characters meet.

@@ -1,9 +1,10 @@
 {
   "name": "Cat Girl",
   "type": "Half Human Half Cat",
+  "class": "Ranger",
   "age": 22,
-  "level": 1,
-  "experience": 0,
+  "level": 2,
+  "experience": 400,
   "strength": 16,
   "dexterity": 15,
   "constitution": 13,
@@ -11,7 +12,8 @@
   "wisdom": 14,
   "charisma": 14,
   "hit_dice": "1d8",
-  "hit_points": 8,
+  "hit_points": 14,
+  "current_hit_points": 14,
   "armor_class": 13,
   "speed": 30,
   "skills": {
@@ -19,11 +21,48 @@
     "stealth": 4,
     "perception": 4
   },
-  "languages": ["Common", "Cat"],
-  "equipment": ["Dagger", "Leather Armor", "Backpack", "Bedroll", "Mess Kit", "Tinderbox", "10 Torches", "10 Days Rations", "Waterskin", "50ft Hempen Rope"],
-  "features": ["Darkvision", "Keen Senses", "Cat's Claws", "Cat's Agility"],
-  "proficiencies": ["Daggers", "Short Swords", "Long Swords", "Short Bows", "Long Bows"],
-  "spells": [],
-  "equiped_spells": [],
-  "description": "A half human half cat creature with sharp claws and keen senses. A fierce fighter and a loyal companion."
+  "languages": [
+    "Common",
+    "Cat"
+  ],
+  "equipment": [
+    "Dagger",
+    "Dagger",
+    "Leather Armor",
+    "Backpack",
+    "Bedroll",
+    "Mess Kit",
+    "Tinderbox",
+    "10 Torches",
+    "10 Days Rations",
+    "Waterskin",
+    "50ft Hempen Rope",
+    "Shovel"
+  ],
+  "features": [
+    "Darkvision",
+    "Keen Senses",
+    "Cat's Claws",
+    "Cat's Agility"
+  ],
+  "proficiencies": [
+    "Daggers",
+    "Short Swords",
+    "Long Swords",
+    "Short Bows",
+    "Long Bows"
+  ],
+  "spells": [
+    "Cure Wounds",
+    "Animal Friendship"
+  ],
+  "fighting_style": {
+    "name": "Two-Weapon Fighting"
+  },
+  "description": "A half human half cat creature with sharp claws and keen senses. A fierce fighter and a loyal companion.",
+  "currency": {
+    "gold": 2,
+    "silver": 10,
+    "copper": 0
+  }
 }

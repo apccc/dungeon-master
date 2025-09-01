@@ -1,9 +1,10 @@
 {
   "name": "Andros",
   "type": "High Elf",
+  "class": "Wizard",
   "age": 120,
-  "level": 1,
-  "experience": 0,
+  "level": 2,
+  "experience": 400,
   "strength": 10,
   "dexterity": 14,
   "constitution": 12,
@@ -11,7 +12,8 @@
   "wisdom": 13,
   "charisma": 11,
   "hit_dice": "1d6",
-  "hit_points": 6,
+  "hit_points": 10,
+  "current_hit_points": 10,
   "armor_class": 12,
   "speed": 30,
   "skills": {
@@ -19,11 +21,59 @@
     "history": 5,
     "investigation": 5
   },
-  "languages": ["Common", "Elvish", "Draconic"],
-  "equipment": ["Quarterstaff", "Spellbook", "Component Pouch", "Scholar's Pack", "Dagger"],
-  "features": ["Darkvision", "Fey Ancestry", "Trance", "Elf Weapon Training", "Cantrip"],
-  "proficiencies": ["Daggers", "Darts", "Slings", "Quarterstaffs", "Light Crossbows"],
-  "spells": ["Mage Hand", "Prestidigitation", "Fire Bolt", "Magic Missile", "Shield"],
-  "equiped_spells": ["Mage Hand", "Prestidigitation"],
-  "description": "A high elf wizard with a keen mind and a deep understanding of the arcane arts. Andros is a wise and intelligent spellcaster, always seeking to expand his knowledge."
+  "languages": [
+    "Common",
+    "Elvish",
+    "Draconic"
+  ],
+  "equipment": [
+    "Dagger",
+    "Quarterstaff",
+    "Spellbook",
+    "Component Pouch",
+    "Scholar's Pack",
+    "14 Days Rations",
+    "50ft Hempen Rope",
+    "Waterskin",
+    "Backpack",
+    "Bedroll"
+  ],
+  "features": [
+    "Darkvision",
+    "Fey Ancestry",
+    "Trance",
+    "Elf Weapon Training",
+    "Cantrip"
+  ],
+  "proficiencies": [
+    "Daggers",
+    "Darts",
+    "Slings",
+    "Quarterstaffs",
+    "Light Crossbows"
+  ],
+  "spells": [
+    "Magic Missile",
+    "Shield",
+    "Disguise Self"
+  ],
+  "cantrips": [
+    "Mage Hand",
+    "Prestidigitation",
+    "Fire Bolt"
+  ],
+  "arcane_tradition": {
+    "name": "School of Illusion"
+  },
+  "equiped_spells": [
+    "Magic Missile",
+    "Magic Missile",
+    "Magic Missile"
+  ],
+  "description": "A high elf wizard with a keen mind and a deep understanding of the arcane arts. Andros is a wise and intelligent spellcaster, always seeking to expand his knowledge.",
+  "currency": {
+    "gold": 2,
+    "silver": 82,
+    "copper": 5
+  }
 }

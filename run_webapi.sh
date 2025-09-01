@@ -1,10 +1,12 @@
 #!/bin/bash
 
-echo "Running Dungeon Master"
+echo "Running Dungeon Master Web API"
 
+cd webapi
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+pip install boto3
 python3 main.py
 
 exit 0
