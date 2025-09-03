@@ -6,6 +6,7 @@ from data.locations import Locations
 from data.players import Players
 from data.events import Events
 from data.player import Player
+from handler_headers import get_data_from_headers
 
 
 def get_current_data(data_dict):
@@ -28,12 +29,19 @@ def get_current_data(data_dict):
     return data_dict
 
 
+def get_raw_path(event):
+    raw_path= event.get('rawPath', '')
+    if raw_path.startswith('//'):
+        raw_path = raw_path[1:]
+    return raw_path
+
 async def handle_get(event, context):
-    raw_path = event.get('rawPath', '')
+    raw_path = get_raw_path(event)
     request_headers = event.get('headers', {})
-    game_id = request_headers.get('game_id', '')
-    player_id = request_headers.get('player_id', '')
-    dm_data_id = request_headers.get('dm_data_id', '')
+    game_metadata = get_data_from_headers(request_headers)
+    game_id = game_metadata.get('game_id', '')
+    player_id = game_metadata.get('player_id', '')
+    dm_data_id = game_metadata.get('dm_data_id', '')
 
     if not game_id or not player_id:
         return {
@@ -142,8 +150,13 @@ async def handle_get(event, context):
         }
 
     if is_dm and raw_path == '/game/monsters':
-        from data.monsters import Monsters
-        monsters = Monsters(game_id).get_monsters_data()
+        if dm_data_id and is_dm:
+            from data.monster import Monster
+            monsters = Monster(dm_data_id).get_monster_data()
+        else:
+            from data.monsters import Monsters
+            monsters = Monsters(game_id).get_monsters_data()
+
         return {
             'statusCode': 200,
             'body': monsters.to_dict()

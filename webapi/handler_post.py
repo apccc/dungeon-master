@@ -87,10 +87,15 @@ def handle_post(event, context):
         }
 
     if is_dm and raw_path == '/game/monsters':
-        from data.monsters import Monsters
+        if dm_data_id and is_dm:
+            from data.monster import Monster
+            response = Monster(dm_data_id).upsert_monster_data_dict(body)
+        else:
+            from data.monsters import Monsters
+            response = Monsters(game_id).upsert_monsters_data_dict(body)
         return {
             'statusCode': 200,
-            'body': Monsters(game_id).upsert_monsters_data_dict(body)
+            'body': response
         }
 
     if is_dm and raw_path == '/game/players':
