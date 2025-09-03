@@ -100,6 +100,13 @@ def handle_post(event, context):
             'body': Players(game_id).upsert_players_data_dict(body)
         }
 
+    if is_dm and raw_path == '/game/notes':
+        from data.notes import Notes
+        return {
+            'statusCode': 200,
+            'body': Notes(game_id).upsert_notes_data_dict(body)
+        }
+
     if raw_path == '/game/player':
         player_id_to_target = player_id
         if dm_data_id and is_dm:

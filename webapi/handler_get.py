@@ -156,6 +156,14 @@ async def handle_get(event, context):
             'body': players.to_dict()
         }
 
+    if is_dm and raw_path == '/game/notes':
+        from data.notes import Notes
+        notes = Notes(game_id).get_notes_data()
+        return {
+            'statusCode': 200,
+            'body': notes.to_dict()
+        }
+
     if raw_path == '/game/player':
         player_id_to_load = player_id
         if dm_data_id and is_dm:

@@ -50,6 +50,10 @@ def get_navigation(is_dm: bool) -> dict:
             "name": "Game Settings",
             "path": "/game/settings.html",
         })
+        navigation.append({
+            "name": "Game Notes",
+            "path": "/game/notes.html",
+        })
     return {
         "navigation": navigation
     }
