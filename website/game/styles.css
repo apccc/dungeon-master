@@ -320,10 +320,6 @@ html {
 }
 
 /* Location Items Styles */
-.location-item {
-    /* Inherits common styles from .game-item */
-}
-
 .location-item::before {
     content: "📍";
     margin-right: 8px;
@@ -336,10 +332,6 @@ html {
 }
 
 /* Event Items Styles */
-.event-item {
-    /* Inherits common styles from .game-item */
-}
-
 .event-item::before {
     content: "⚡";
     margin-right: 8px;
@@ -352,9 +344,6 @@ html {
 }
 
 /* Player Items Styles */
-.player-item {
-    /* Inherits common styles from .game-item */
-}
 
 .player-item::before {
     content: "👤";

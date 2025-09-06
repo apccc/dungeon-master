@@ -76,12 +76,13 @@ async def handle_get(event, context):
         
         current_locations = get_current_data(locations.to_dict())
         current_events = get_current_data(events.to_dict())
+        current_players = get_current_data(players.to_dict())
 
         body_response = {
             'game': game.to_dict(),
             'navigation': get_navigation(is_dm),
             'locations': current_locations,
-            'players': players.to_dict(),
+            'players': current_players,
             'events': current_events,
         }
 

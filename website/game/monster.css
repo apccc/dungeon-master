@@ -1,0 +1,257 @@
+/* Monster Form Styles */
+#monster-container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(102, 126, 234, 0.1);
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+#monster-title {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 3px solid rgba(102, 126, 234, 0.2);
+    padding-bottom: 15px;
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(102, 126, 234, 0.02);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+}
+
+.form-section h3 {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+
+.form-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+/* Form Fields */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field label {
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    padding: 10px 12px;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.form-field textarea {
+    min-height: 100px;
+    resize: vertical;
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+}
+
+.form-field select {
+    cursor: pointer;
+}
+
+/* Checkbox Fields */
+.form-field label input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.form-field label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid rgba(102, 126, 234, 0.1);
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.form-actions button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    min-width: 120px;
+}
+
+.form-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.form-actions button:active {
+    transform: translateY(0);
+}
+
+.form-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    background: #6c757d;
+}
+
+/* Back Button */
+#back-to-monsters-btn {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+#back-to-monsters-btn:hover {
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+/* Disabled Form State */
+#monster-form.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+#monster-form.disabled .form-field input,
+#monster-form.disabled .form-field textarea,
+#monster-form.disabled .form-field select {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+/* Editing Disabled Note */
+.editing-disabled-note {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Responsive Design for Monster Forms */
+@media (max-width: 768px) {
+    #monster-container {
+        padding: 20px;
+        margin: 15px;
+    }
+    
+    #monster-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .form-section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .form-section h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    
+    .form-fields {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    #monster-container {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    #monster-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .form-section {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .form-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+    
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .form-field textarea {
+        min-height: 80px;
+    }
+    
+    .form-actions button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
