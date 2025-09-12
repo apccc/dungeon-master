@@ -1,94 +1,235 @@
-document.addEventListener('DOMContentLoaded', () => {
-    loadApiController('game/monsters', 'middle', 'Game Monsters', initializeMultipleForm);
-    
-    // Override the reloadApiController behavior for monsters page
-    setupMonsterPageReloadOverride();
-});
-
-// Function to load individual monster form when a monster is selected
-async function loadMonsterForm(monsterId) {
-    if (!monsterId) {
-        console.warn('No monster ID provided to loadMonsterForm');
-        return;
+// Generic Entity Manager for handling different entity types
+class EntityManager {
+    constructor(entityType, apiPath, title, fieldPopulator) {
+        this.entityType = entityType;
+        this.apiPath = apiPath;
+        this.title = title;
+        this.fieldPopulator = fieldPopulator;
+        this.clientData = {}; // Store client-side data representation
     }
-    
-    console.log('Loading monster form for ID:', monsterId);
-    
-    try {
-        // Load the specific monster data using the same API path but with dm_data_id
-        const monsterData = await getFromApi('game/monsters', monsterId);
-        console.log('Loaded monster data:', monsterData);
-        console.log('Monster data type:', typeof monsterData);
-        console.log('Monster data keys:', monsterData ? Object.keys(monsterData) : 'null/undefined');
-        
-        // Check if we got valid data
-        if (!monsterData) {
-            throw new Error('No monster data returned from API');
+
+    // Initialize the entity manager
+    initialize() {
+        loadApiController(this.apiPath, 'middle', this.title, initializeMultipleForm);
+        this.setupPageReloadOverride();
+    }
+
+    // Load individual entity form when an entity is selected
+    async loadEntityForm(entityId) {
+        if (!entityId) {
+            console.warn(`No ${this.entityType} ID provided to loadEntityForm`);
+            return;
         }
         
-        // Wait for monsterFieldPopulator to be available before initializing
-        const waitForMonsterFieldPopulator = (callback) => {
-            if (window.monsterFieldPopulator && typeof window.monsterFieldPopulator.populateForm === 'function') {
-                console.log('monsterFieldPopulator is ready for monster form');
-                callback();
+        console.log(`Loading ${this.entityType} form for ID:`, entityId);
+        
+        try {
+            // Load the specific entity data using the same API path but with dm_data_id
+            const entityData = await getFromApi(this.apiPath, entityId);
+            console.log(`Loaded ${this.entityType} data:`, entityData);
+            console.log(`${this.entityType} data type:`, typeof entityData);
+            console.log(`${this.entityType} data keys:`, entityData ? Object.keys(entityData) : 'null/undefined');
+            
+            // Check if we got valid data
+            if (!entityData) {
+                throw new Error(`No ${this.entityType} data returned from API`);
+            }
+            
+            // Wait for field populator to be available before initializing
+            const waitForFieldPopulator = (callback) => {
+                if (this.fieldPopulator && typeof this.fieldPopulator.populateForm === 'function') {
+                    console.log(`${this.entityType}FieldPopulator is ready for ${this.entityType} form`);
+                    callback();
+                } else {
+                    console.log(`Waiting for ${this.entityType}FieldPopulator to load for ${this.entityType} form...`);
+                    setTimeout(() => waitForFieldPopulator(callback), 100);
+                }
+            };
+            
+            waitForFieldPopulator(() => {
+                // Initialize the entity form with the loaded data
+                this.initializeEntityForm('middle', entityData, `Edit ${this.title}`, this.apiPath);
+            });
+            
+        } catch (error) {
+            console.error(`Failed to load ${this.entityType} form:`, error);
+            console.error('Error details:', error.message);
+            console.error('Error stack:', error.stack);
+            alert(`Failed to load ${this.entityType} data: ${error.message}. Please try again.`);
+        }
+    }
+
+    // Initialize entity form (to be overridden by specific entity types)
+    initializeEntityForm(containerId, entityData, title, apiPath) {
+        // This should be overridden by specific entity managers
+        console.warn('initializeEntityForm not implemented for this entity type');
+    }
+
+    // Load the entities list (go back from individual entity form)
+    async loadEntitiesList() {
+        try {
+            // Clear the dm-id-input to load all entities
+            const dmIdInput = document.getElementById('dm-id-input');
+            if (dmIdInput) {
+                dmIdInput.value = '';
+            }
+            
+            // Load the entities list
+            await loadApiController(this.apiPath, 'middle', this.title, initializeMultipleForm);
+            
+            // Re-setup the reload override for future Load button clicks
+            this.setupPageReloadOverride();
+            
+        } catch (error) {
+            console.error(`Failed to load ${this.entityType} list:`, error);
+            alert(`Failed to load ${this.entityType} list. Please try again.`);
+        }
+    }
+
+    // Setup override for reloadApiController on entity page
+    setupPageReloadOverride() {
+        // Store the original reloadApiController function
+        const originalReloadApiController = window.reloadApiController;
+        
+        // Override reloadApiController to check if we're on entity page with an entity ID
+        window.reloadApiController = async () => {
+            const dmIdInput = document.getElementById('dm-id-input');
+            const entityId = dmIdInput?.value?.trim();
+            
+            // If we're on the entity page and have a valid entity ID, load the individual entity form
+            if (entityId && entityId !== '' && window.location.pathname.includes(`/${this.entityType}s.html`)) {
+                console.log(`${this.title} page detected with ${this.entityType} ID:`, entityId);
+                await this.loadEntityForm(entityId);
             } else {
-                console.log('Waiting for monsterFieldPopulator to load for monster form...');
-                setTimeout(() => waitForMonsterFieldPopulator(callback), 100);
+                // Otherwise, use the original reloadApiController
+                console.log('Using original reloadApiController');
+                return await originalReloadApiController();
             }
         };
+    }
+
+    // Update client-side data representation
+    updateClientData(entityId, fieldName, newValue) {
+        if (!this.clientData[entityId]) {
+            this.clientData[entityId] = {};
+        }
         
-        waitForMonsterFieldPopulator(() => {
-            // Initialize the monster form with the loaded data
-            initializeMonsterForm('middle', monsterData, 'Edit Monster', 'game/monsters');
-        });
+        // Update the specific field
+        this.setNestedValue(this.clientData[entityId], fieldName, newValue);
         
-    } catch (error) {
-        console.error('Failed to load monster form:', error);
-        console.error('Error details:', error.message);
-        console.error('Error stack:', error.stack);
-        alert(`Failed to load monster data: ${error.message}. Please try again.`);
+        // Update the display in the multiple items view
+        this.updateItemDisplay(entityId, fieldName, newValue);
+        
+        console.log(`Updated client data for ${this.entityType} ${entityId}:`, fieldName, '=', newValue);
+    }
+
+    // Set nested value in object using dot notation
+    setNestedValue(obj, path, value) {
+        if (!path) return obj;
+        
+        const keys = path.split('.');
+        const lastKey = keys.pop();
+        const target = keys.reduce((current, key) => {
+            if (!current[key] || typeof current[key] !== 'object') {
+                current[key] = {};
+            }
+            return current[key];
+        }, obj);
+        
+        target[lastKey] = value;
+        return obj;
+    }
+
+    // Update item display in the multiple items view
+    updateItemDisplay(entityId, fieldName, newValue) {
+        const itemCard = document.querySelector(`[data-item-key="${entityId}"]`);
+        if (!itemCard) return;
+
+        // Update specific display elements based on field name
+        switch (fieldName) {
+            case 'name':
+                const nameDisplay = itemCard.querySelector('.item-name');
+                if (nameDisplay) nameDisplay.textContent = newValue;
+                break;
+            case 'type':
+                const typeDisplay = itemCard.querySelector('.item-type');
+                if (typeDisplay) {
+                    if (newValue) {
+                        typeDisplay.textContent = newValue;
+                        typeDisplay.style.display = 'block';
+                    } else {
+                        typeDisplay.style.display = 'none';
+                    }
+                }
+                break;
+            case 'description':
+                const descriptionDisplay = itemCard.querySelector('.item-description');
+                if (descriptionDisplay) {
+                    if (newValue) {
+                        descriptionDisplay.textContent = newValue;
+                        descriptionDisplay.style.display = 'block';
+                    } else {
+                        descriptionDisplay.style.display = 'none';
+                    }
+                }
+                break;
+            case 'image':
+                const imageDisplay = itemCard.querySelector('.item-image');
+                if (imageDisplay) {
+                    if (newValue) {
+                        const img = imageDisplay.querySelector('img');
+                        if (img) {
+                            img.src = `/images/${newValue}`;
+                            img.alt = this.clientData[entityId]?.name || entityId;
+                        }
+                        imageDisplay.style.display = 'block';
+                    } else {
+                        imageDisplay.style.display = 'none';
+                    }
+                }
+                break;
+        }
     }
 }
 
-// Function to load the monsters list (go back from individual monster form)
+// Monster-specific entity manager
+class MonsterManager extends EntityManager {
+    constructor() {
+        super('monster', 'game/monsters', 'Game Monsters', window.monsterFieldPopulator);
+    }
+
+    // Initialize monster form with monster-specific field populator
+    initializeEntityForm(containerId, monsterData, title, apiPath) {
+        initializeMonsterForm(containerId, monsterData, title, apiPath);
+    }
+}
+
+// Initialize monster manager when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.monsterManager = new MonsterManager();
+    window.monsterManager.initialize();
+});
+
+// Legacy function names for backward compatibility
+async function loadMonsterForm(monsterId) {
+    if (window.monsterManager) {
+        return await window.monsterManager.loadEntityForm(monsterId);
+    }
+    console.warn('Monster manager not initialized');
+}
+
+// Legacy function names for backward compatibility
 async function loadMonstersList() {
-    try {
-        // Clear the dm-id-input to load all monsters
-        const dmIdInput = document.getElementById('dm-id-input');
-        if (dmIdInput) {
-            dmIdInput.value = '';
-        }
-        
-        // Load the monsters list
-        await loadApiController('game/monsters', 'middle', 'Game Monsters', initializeMultipleForm);
-        
-        // Re-setup the reload override for future Load button clicks
-        setupMonsterPageReloadOverride();
-        
-    } catch (error) {
-        console.error('Failed to load monsters list:', error);
-        alert('Failed to load monsters list. Please try again.');
+    if (window.monsterManager) {
+        return await window.monsterManager.loadEntitiesList();
     }
+    console.warn('Monster manager not initialized');
 }
 
-// Setup override for reloadApiController on monsters page
+// Legacy function for backward compatibility
 function setupMonsterPageReloadOverride() {
-    // Store the original reloadApiController function
-    const originalReloadApiController = window.reloadApiController;
-    
-    // Override reloadApiController to check if we're on monsters page with a monster ID
-    window.reloadApiController = async function() {
-        const dmIdInput = document.getElementById('dm-id-input');
-        const monsterId = dmIdInput?.value?.trim();
-        
-        // If we're on the monsters page and have a valid monster ID, load the individual monster form
-        if (monsterId && monsterId !== '' && window.location.pathname.includes('/monsters.html')) {
-            console.log('Monsters page detected with monster ID:', monsterId);
-            await loadMonsterForm(monsterId);
-        } else {
-            // Otherwise, use the original reloadApiController
-            console.log('Using original reloadApiController');
-            return await originalReloadApiController();
-        }
-    };
+    if (window.monsterManager) {
+        return window.monsterManager.setupPageReloadOverride();
+    }
+    console.warn('Monster manager not initialized');
 }
