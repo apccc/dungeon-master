@@ -172,15 +172,17 @@ async function handleMonsterFormSubmission(event, apiPath) {
     const submitButton = event.target.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
 
-    try {
-        setButtonState(submitButton, 'Saving...', true);
-        
-        const monsterData = collectMonsterFormData();
-        const response = await postToApi(apiPath, monsterData);
-        
-        console.log(response);
-        setButtonState(submitButton, 'Saved!', false, '#4CAF50', 'white');
-        
+    try {        
+        const dmDataId = document.getElementById('dm-id-input')?.value || '';
+        if (dmDataId) {
+            setButtonState(submitButton, 'Saving...', true);
+            const monsterData = collectMonsterFormData();
+            const response = await postToApi(apiPath, monsterData, dmDataId);
+            console.log(response);
+            setButtonState(submitButton, 'Saved!', false, '#4CAF50', 'white');    
+        } else {
+            alert('Please enter a valid DM ID to save the monster.');
+        }                
     } catch (error) {
         console.error('Save failed:', error);
         setButtonState(submitButton, 'Save Failed', false, '#f44336', 'white');

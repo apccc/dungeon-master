@@ -33,12 +33,15 @@ async function getFromApi(path, dmDataId) {
     
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
+            const headers = {
+                'game_id': gameId,
+                'player_id': playerId,
+            }
+            if (dmDataId) {
+                headers['dm_data_id'] = dmDataId;
+            }
             const response = await fetch(`${API_URL}${path}`, {
-                headers: {
-                    'game_id': gameId,
-                    'player_id': playerId,
-                    'dm_data_id': dmDataId || ''
-                }
+                headers: headers,
             });
 
             if (!response.ok) {
@@ -76,13 +79,17 @@ async function postToApi(path, body, dmDataId) {
         throw new Error('Invalid body type');
     }
 
+    const headers = {
+        'game_id': gameId,
+        'player_id': playerId,
+    }
+    if (dmDataId) {
+        headers['dm_data_id'] = dmDataId;
+    }
+
     const response = await fetch(`${API_URL}${path}`, {
         method: 'POST',
-        headers: {
-            'game_id': gameId,
-            'player_id': playerId,
-            'dm_data_id': dmDataId || ''
-        },
+        headers: headers,
         body: body_content
     });
 
