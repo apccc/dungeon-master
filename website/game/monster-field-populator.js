@@ -329,7 +329,8 @@ class MonsterFieldPopulator {
                     { id: 'hit_dice', name: 'hit_dice', label: 'Hit Dice', type: 'text', dataPath: 'hit_dice' },
                     { id: 'hit_points_roll', name: 'hit_points_roll', label: 'Hit Points Roll', type: 'text', dataPath: 'hit_points_roll' },
                     { id: 'speed', name: 'speed', label: 'Speed', type: 'text', dataPath: 'speed.walk' },
-                    { id: 'proficiency_bonus', name: 'proficiency_bonus', label: 'Proficiency Bonus', type: 'number', dataPath: 'proficiency_bonus' }
+                    { id: 'proficiency_bonus', name: 'proficiency_bonus', label: 'Proficiency Bonus', type: 'number', dataPath: 'proficiency_bonus' },
+                    { id: 'initiative', name: 'initiative', label: 'Initiative', type: 'number', dataPath: 'initiative' }
                 ]
             },
             {

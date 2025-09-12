@@ -168,8 +168,8 @@ function attachMultipleItemsEventListeners() {
                 dmIdInput.value = itemKey;
                 console.log('Populated dm-id-input with:', itemKey);
                 
-                // If we're on the monsters page, automatically load the monster form
-                if (window.location.pathname.includes('/monsters.html')) {
+                // If we're on the monsters page and have a valid itemKey, automatically load the monster form
+                if (window.location.pathname.includes('/monsters.html') && itemKey && itemKey.trim() !== '') {
                     // Add a small delay to ensure the dm-id-input value is set
                     setTimeout(() => {
                         if (typeof loadMonsterForm === 'function') {

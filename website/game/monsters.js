@@ -81,8 +81,8 @@ function setupMonsterPageReloadOverride() {
         const dmIdInput = document.getElementById('dm-id-input');
         const monsterId = dmIdInput?.value?.trim();
         
-        // If we're on the monsters page and have a monster ID, load the individual monster form
-        if (monsterId && window.location.pathname.includes('/monsters.html')) {
+        // If we're on the monsters page and have a valid monster ID, load the individual monster form
+        if (monsterId && monsterId !== '' && window.location.pathname.includes('/monsters.html')) {
             console.log('Monsters page detected with monster ID:', monsterId);
             await loadMonsterForm(monsterId);
         } else {
