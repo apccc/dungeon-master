@@ -164,6 +164,106 @@ function buildSingleItemDisplay(itemKey, itemData, entityManager) {
 }
 
 /**
+ * Attach event listeners for a specific new item
+ * @param {Object} entityManager - The entity manager instance
+ * @param {string} itemKey - The key of the new item
+ */
+function attachNewItemEventListeners(entityManager, itemKey) {
+    const itemCard = document.querySelector(`[data-item-key="${itemKey}"]`);
+    if (!itemCard) return;
+    
+    // Mark this card as having listeners attached
+    itemCard.setAttribute('data-listeners-attached', 'true');
+    
+    // Delete item button
+    const deleteBtn = itemCard.querySelector('.delete-item-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            deleteItem(event.target.dataset.itemKey, entityManager);
+        });
+    }
+    
+    // Edit item button
+    const editBtn = itemCard.querySelector('.edit-item-btn');
+    if (editBtn) {
+        editBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleEditMode(event.target.dataset.itemKey, entityManager);
+        });
+    }
+    
+    // Add input change listeners for real-time updates
+    const editInputs = itemCard.querySelectorAll('.item-name-edit, .item-type-edit, .item-image-edit, .item-description-edit');
+    editInputs.forEach(input => {
+        // Add click event listener to prevent card click when clicking on input fields
+        input.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+        
+        input.addEventListener('input', (event) => {
+            const fieldName = event.target.dataset.field;
+            const newValue = event.target.value;
+            
+            // Update client-side data representation
+            if (entityManager && itemKey && fieldName) {
+                entityManager.updateClientData(itemKey, fieldName, newValue);
+            }
+        });
+    });
+    
+    // Add click handler to item card
+    itemCard.addEventListener('click', (event) => {
+        // Don't trigger if clicking delete or edit button, or any input fields
+        if (event.target.classList.contains('delete-item-btn') || 
+            event.target.classList.contains('edit-item-btn') ||
+            event.target.classList.contains('item-name-edit') ||
+            event.target.classList.contains('item-type-edit') ||
+            event.target.classList.contains('item-image-edit') ||
+            event.target.classList.contains('item-description-edit')) {
+            return;
+        }
+        
+        console.log('Item clicked:', itemKey);
+        
+        // Populate dm-id-input with the item key
+        const dmIdInput = document.getElementById('dm-id-input');
+        if (dmIdInput) {
+            dmIdInput.value = itemKey;
+            console.log('Populated dm-id-input with:', itemKey);
+            
+            // If we have an entity manager, use it to load the entity form
+            if (entityManager && itemKey && itemKey.trim() !== '') {
+                // Add a small delay to ensure the dm-id-input value is set
+                setTimeout(() => {
+                    entityManager.loadEntityForm(itemKey);
+                }, 100);
+            } else if (window.location.pathname.includes('/monsters.html') && itemKey && itemKey.trim() !== '') {
+                // Fallback for backward compatibility
+                setTimeout(() => {
+                    if (typeof loadMonsterForm === 'function') {
+                        loadMonsterForm(itemKey);
+                    } else {
+                        console.warn('loadMonsterForm function not available');
+                    }
+                }, 100);
+            }
+        } else {
+            console.warn('dm-id-input element not found');
+        }
+    });
+    
+    // Add hover effects
+    itemCard.addEventListener('mouseenter', (event) => {
+        event.currentTarget.classList.add('hovered');
+    });
+    
+    itemCard.addEventListener('mouseleave', (event) => {
+        event.currentTarget.classList.remove('hovered');
+    });
+}
+
+/**
  * Attach event listeners for the multiple items display
  * @param {Object} entityManager - The entity manager instance
  */
@@ -180,47 +280,52 @@ function attachMultipleItemsEventListeners(entityManager) {
         saveItemsBtn.addEventListener('click', () => saveAllItems(entityManager));
     }
     
-    // Delete item buttons
-    const deleteButtons = document.querySelectorAll('.delete-item-btn');
-    deleteButtons.forEach(btn => {
-        btn.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent card click
-            deleteItem(event.target.dataset.itemKey, entityManager);
-        });
-    });
-    
-    // Edit item buttons
-    const editButtons = document.querySelectorAll('.edit-item-btn');
-    editButtons.forEach(btn => {
-        btn.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent card click
-            toggleEditMode(event.target.dataset.itemKey, entityManager);
-        });
-    });
-    
-    // Add input change listeners for real-time updates
-    const editInputs = document.querySelectorAll('.item-name-edit, .item-type-edit, .item-image-edit, .item-description-edit');
-    editInputs.forEach(input => {
-        // Add click event listener to prevent card click when clicking on input fields
-        input.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent card click
+    // Attach event listeners only to cards that don't already have them
+    const itemCards = document.querySelectorAll('.item-card:not([data-listeners-attached])');
+    itemCards.forEach(card => {
+        const itemKey = card.dataset.itemKey;
+        
+        // Mark this card as having listeners attached
+        card.setAttribute('data-listeners-attached', 'true');
+        
+        // Delete item button
+        const deleteBtn = card.querySelector('.delete-item-btn');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                deleteItem(event.target.dataset.itemKey, entityManager);
+            });
+        }
+        
+        // Edit item button
+        const editBtn = card.querySelector('.edit-item-btn');
+        if (editBtn) {
+            editBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                toggleEditMode(event.target.dataset.itemKey, entityManager);
+            });
+        }
+        
+        // Add input change listeners for real-time updates
+        const editInputs = card.querySelectorAll('.item-name-edit, .item-type-edit, .item-image-edit, .item-description-edit');
+        editInputs.forEach(input => {
+            // Add click event listener to prevent card click when clicking on input fields
+            input.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+            
+            input.addEventListener('input', (event) => {
+                const fieldName = event.target.dataset.field;
+                const newValue = event.target.value;
+                
+                // Update client-side data representation
+                if (entityManager && itemKey && fieldName) {
+                    entityManager.updateClientData(itemKey, fieldName, newValue);
+                }
+            });
         });
         
-        input.addEventListener('input', (event) => {
-            const itemKey = event.target.closest('.item-card').dataset.itemKey;
-            const fieldName = event.target.dataset.field;
-            const newValue = event.target.value;
-            
-            // Update client-side data representation
-            if (entityManager && itemKey && fieldName) {
-                entityManager.updateClientData(itemKey, fieldName, newValue);
-            }
-        });
-    });
-    
-    // Add click handlers to item cards if needed
-    const itemCards = document.querySelectorAll('.item-card');
-    itemCards.forEach(card => {
+        // Add click handler to item card
         card.addEventListener('click', (event) => {
             // Don't trigger if clicking delete or edit button, or any input fields
             if (event.target.classList.contains('delete-item-btn') || 
@@ -231,7 +336,7 @@ function attachMultipleItemsEventListeners(entityManager) {
                 event.target.classList.contains('item-description-edit')) {
                 return;
             }
-            const itemKey = event.currentTarget.dataset.itemKey;
+            
             console.log('Item clicked:', itemKey);
             
             // Populate dm-id-input with the item key
@@ -260,10 +365,8 @@ function attachMultipleItemsEventListeners(entityManager) {
                 console.warn('dm-id-input element not found');
             }
         });
-    });
-    
-    // Add hover effects
-    itemCards.forEach(card => {
+        
+        // Add hover effects
         card.addEventListener('mouseenter', (event) => {
             event.currentTarget.classList.add('hovered');
         });
@@ -330,8 +433,8 @@ function addNewItem(entityManager) {
     imageInput.value = '';
     descriptionInput.value = '';
     
-    // Reattach event listeners for the new item
-    attachMultipleItemsEventListeners(entityManager);
+    // Attach event listeners only for the new item
+    attachNewItemEventListeners(entityManager, key);
     
     console.log('Added new item:', key, newItemData);
 }
