@@ -218,6 +218,13 @@ function addNewItem() {
         return;
     }
     
+    // Validate key format (lowercase alphanumeric and minus only)
+    const keyPattern = /^[a-z0-9-]+$/;
+    if (!keyPattern.test(key)) {
+        alert('Item Key must contain only lowercase letters, numbers, and minus characters');
+        return;
+    }
+    
     // Check if item already exists
     const existingCard = document.querySelector(`[data-item-key="${key}"]`);
     if (existingCard) {
