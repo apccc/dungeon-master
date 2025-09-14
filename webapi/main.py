@@ -1,7 +1,7 @@
 import asyncio
 from handler_get import handle_get
 from handler_post import handle_post
-from utility import get_dnd_5e_srd_resource
+from utility import upsert_player
 
 def lambda_handler(event, context):
     print(f"Event: {event}")
@@ -19,6 +19,6 @@ def lambda_handler(event, context):
 
 
 if __name__ == "__main__":
-    ret = get_dnd_5e_srd_resource()
+    ret = upsert_player('daryl')
     print(ret)
     print("Done")

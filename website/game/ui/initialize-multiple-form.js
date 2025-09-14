@@ -143,7 +143,8 @@ function buildSingleItemDisplay(itemKey, itemData, entityManager) {
     // Build the item HTML
     const imageHtml = image ? `<div class="item-image"><img src="/images/${image}" alt="${name}" /></div>` : '';
     const typeHtml = type ? `<div class="item-type">${type}</div>` : '';
-    const descriptionHtml = description ? `<div class="item-description">${description}</div>` : '';
+    // Always create description div, but hide it if empty
+    const descriptionHtml = `<div class="item-description" style="${description ? '' : 'display: none;'}">${description}</div>`;
     
     return `
         <div class="item-card" data-item-key="${itemKey}">
