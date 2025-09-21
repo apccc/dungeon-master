@@ -24,6 +24,20 @@ html {
     margin: 0 auto;
 }
 
+/* Game Header Styles - Full Width */
+#game-header {
+    margin-bottom: 5px;
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding: 5px 20px;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
 /* DM ID Form Styles */
 #dm-id-form {
     background: white;
@@ -82,14 +96,10 @@ html {
     width: 100%;
 }
 
-/* Game Header Styles */
-#game-header {
-    margin-bottom: 15px;
-}
 
 #game-header-title {
     color: #333;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
     font-size: 2rem;
     font-weight: 600;
 }
@@ -105,17 +115,17 @@ html {
 }
 
 .nav-item {
-    padding: 8px 16px;
+    padding: 6px 12px;
     background: rgba(255, 255, 255, 0.95);
     color: #333;
     text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 6px;
+    font-size: 12px;
     font-weight: 500;
     transition: all 0.3s ease;
     border: 2px solid rgba(102, 126, 234, 0.2);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    min-width: 100px;
+    min-width: 80px;
     text-align: center;
 }
 
@@ -566,7 +576,7 @@ html {
 /* Responsive Design */
 @media (max-width: 768px) {
     #game-container {
-        padding: 20px;
+        padding: 10px;
         margin: 10px;
     }
     
@@ -579,9 +589,9 @@ html {
     }
     
     .nav-item {
-        padding: 8px 14px;
-        font-size: 13px;
-        min-width: 80px;
+        padding: 5px 10px;
+        font-size: 11px;
+        min-width: 70px;
     }
     
     #dm-id-form {
