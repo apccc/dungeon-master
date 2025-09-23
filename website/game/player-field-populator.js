@@ -107,7 +107,7 @@ class FieldPopulator {
         
         section.fields.forEach(field => {
             let fieldData;
-            if (field.type === 'coins' || field.type === 'attunements') {
+            if (field.type === 'coins' || field.type === 'attunements' || field.type === 'armorTraining') {
                 // Special field types that don't use dataPath
                 fieldData = data;
             } else {
@@ -549,11 +549,39 @@ class FieldPopulator {
     }
 
     /**
+     * Flattens a nested object into dot-notation keys
+     */
+    flattenObject(obj, prefix = '') {
+        const flattened = {};
+        
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                const value = obj[key];
+                const newKey = prefix ? `${prefix}.${key}` : key;
+                
+                if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
+                    // Recursively flatten nested objects
+                    Object.assign(flattened, this.flattenObject(value, newKey));
+                } else {
+                    // Add the value with the flattened key
+                    flattened[newKey] = value;
+                }
+            }
+        }
+        
+        return flattened;
+    }
+
+    /**
      * Populates form fields with data
      */
     populateForm(data) {
         const self = this; // Capture 'this' context
-        Object.entries(data).forEach(([path, value]) => {
+        
+        // Flatten the nested data structure to match data-field paths
+        const flattenedData = self.flattenObject(data);
+        
+        Object.entries(flattenedData).forEach(([path, value]) => {
             const field = document.querySelector(`[data-field="${path}"]`);
             if (field) {
                 if (field.type === 'checkbox') {
@@ -843,7 +871,7 @@ const methodsToBind = ['buildForm', 'buildSection', 'createTextField', 'createNu
                       'createCheckboxField', 'createTextareaField', 'createSelectField', 
                       'createAbilitySection', 'createTable', 'createSpellSlots', 'createCoinsSection',
                       'createCombatSection', 'createDeathSaves', 'createArmorTraining', 'createAttunements',
-                      'getNestedValue', 'populateForm', 'collectFormData', 'setNestedValue',
+                      'getNestedValue', 'flattenObject', 'populateForm', 'collectFormData', 'setNestedValue',
                       'initializeTables', 'initializeSpellSlots', 'initializeAttunements', 'getPlayerFormConfig'];
 
 methodsToBind.forEach(method => {

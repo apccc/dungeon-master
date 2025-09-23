@@ -19,39 +19,39 @@ def get_navigation(is_dm: bool) -> dict:
     ]
     if is_dm:
         navigation.append({
-            "name": "Game Players",
+            "name": "Players",
             "path": "/game/players.html",
         })
         navigation.append({
-            "name": "Game Monsters",
+            "name": "Monsters",
             "path": "/game/monsters.html",
         })
         navigation.append({
-            "name": "Game Items",
+            "name": "Items",
             "path": "/game/items.html",
         })
         navigation.append({
-            "name": "Game Locations",
+            "name": "Locations",
             "path": "/game/locations.html",
         })
         navigation.append({
-            "name": "Game Events",
+            "name": "Events",
             "path": "/game/events.html",
         })
         navigation.append({
-            "name": "Game Quests",
+            "name": "Quests",
             "path": "/game/quests.html",
         })
         navigation.append({
-            "name": "Game NPCs",
+            "name": "NPCs",
             "path": "/game/npcs.html",
         })
         navigation.append({
-            "name": "Game Settings",
+            "name": "Settings",
             "path": "/game/settings.html",
         })
         navigation.append({
-            "name": "Game Notes",
+            "name": "Notes",
             "path": "/game/notes.html",
         })
     return {

@@ -19,6 +19,6 @@ def lambda_handler(event, context):
 
 
 if __name__ == "__main__":
-    ret = upsert_player('daryl')
+    ret = upsert_player('test')
     print(ret)
     print("Done")
